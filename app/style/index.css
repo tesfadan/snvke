@@ -2,3 +2,24 @@
 Tesfa Demissie
 2021
 https://tesfadan.com */
+
+:root {
+    --darkBackground: #0c0c0c;
+    --background: #18181a;
+    --border: #434f57;
+}
+
+body {
+    background-color: var(--darkBackground);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.canvas {
+    background: var(--background);
+    /* border: 1px solid var(--border); */
+    height: 800px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 64px #00000070;
+}

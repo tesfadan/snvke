@@ -1,3 +1,6 @@
+import { Start } from "./game.js";
+import { session, updateSession } from "./variables.js";
+
 const bootOptions = [
     { label: "New Game", id: "newGameBtn", action: () => changeHandler("newGame") },
     { label: "Levels", id: "levelsBtn", action: () => changeHandler('levelsBtn') },
@@ -48,19 +51,22 @@ const changeHandler = (e) => {
             break;
         case 'easyMode':
             console.log("Change Level to easy");
+            updateSession({ speed: 80 });
             options = bootOptions;
             focus = 1;
             renderOptions(options);
             home();
             break;
         case 'mediumMode':
-            console.log("Change Level to easy");
+            console.log("Change Level to Medium");
+            updateSession({ speed: 60 });
             options = bootOptions;
             focus = 1;
             home();
             break;
         case 'extremeMode':
-            console.log("Change Level to easy");
+            console.log("Change Level to Exrtrem");
+            updateSession({ speed: 40 });
             options = bootOptions;
             focus = 1;
             home();
@@ -86,6 +92,8 @@ const changeHandler = (e) => {
             break;
         case 'newGame':
             document.getElementById('intro').remove();
+            updateSession({ playing: true })
+            Start();
             break;
         default:
             break;
@@ -112,6 +120,7 @@ export const Intro = ({ status }) => {
         document.getElementById('heading').innerHTML += `<h1> Game Title </h1>`
     }
     else if (status === 'gameOver') {
+        focus = 0;
         document.getElementById('heading').innerHTML += `<h1> Game Over </h1>`
     }
 
@@ -141,6 +150,7 @@ const update = () => {
 }
 
 document.addEventListener('keydown', event => {
+    // if (!session.playing) {
     switch (event.keyCode) {
         case 13:
             options[focus].action();
@@ -162,4 +172,5 @@ document.addEventListener('keydown', event => {
         default:
             break;
     }
+    // }
 });

@@ -5,8 +5,9 @@
 
 import { Intro } from "./intro.js";
 import { LoadingScreen } from "./loading.js";
+import { session } from "./variables.js";
 
 // LoadingScreen({ loaded: false });
-// setTimeout(Intro, 3350);
+// setTimeout(() => Intro({ status: 'boot' }), 3350);
 
-Intro({ status: 'boot' });
+Intro({ status: 'boot' })

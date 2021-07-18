@@ -1,10 +1,7 @@
-import { canvas } from "./variables.js"
 
-export const drawGrid = () => {
-    // alert("Draw World");
-    const p = { width: 1400, height: 800, color: '#434f5750', size: 50 }
-    const { width, height, color, size } = p;
-
+export const drawGrid = ({ canvas }) => {
+    const variables = { width: 1400, height: 800, color: '#434f5750', size: 50 }
+    const { width, height, color, size } = variables;
     const grid = canvas.getContext('2d');
     grid.beginPath();
 
@@ -20,5 +17,5 @@ export const drawGrid = () => {
     grid.strokeStyle = color;
     grid.stroke();
 
-    // requestAnimationFrame(drawGrid)
+    requestAnimationFrame(() => drawGrid({ canvas }));
 }

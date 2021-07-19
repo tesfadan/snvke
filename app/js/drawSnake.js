@@ -13,6 +13,7 @@ export const drawSnake = ({ canvas }) => {
 
     session.tails.map((block, index) => {
         const tail = canvas.getContext('2d');
+        // head.fillStyle = index % 2 === 0 ? game.snakeColorAlt : game.snakeColor;
         head.fillStyle = game.snakeColor;
         tail.beginPath();
         tail.fillRect(blockPositionX(block[0]), blockPositionY(block[1]), game.size, game.size);

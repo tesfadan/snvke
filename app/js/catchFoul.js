@@ -21,13 +21,14 @@ export const gameOver = () => {
     session.playing = false;
     session.gameOver = true;
     clearInterval(session.move);
-    game.snakeColor = "#ff0000";
+    var snakeMainColor = game.snakeColor;
+    game.snakeColor = game.colors.dying;
     var popInterval;
     popInterval = setInterval(() => { session.tails.pop() }, session.speed);
 
     setTimeout(() => {
         session.tails = [];
-        game.snakeColor = "#ff0";
+        game.snakeColor = snakeMainColor;
         session.gameOver = false;
         Intro({ status: 'gameOver' });
         clearInterval(popInterval)

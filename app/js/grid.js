@@ -1,6 +1,7 @@
+import { game } from "./variables.js";
 
 export const drawGrid = ({ canvas }) => {
-    const variables = { width: 1400, height: 800, color: '#434f5750', size: 50 }
+    const variables = { width: 1400, height: 800, color: game.border, size: 50 }
     const { width, height, color, size } = variables;
     const grid = canvas.getContext('2d');
     grid.beginPath();

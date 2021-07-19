@@ -122,6 +122,7 @@ const changeHeading = (heading) => {
 }
 
 export const Intro = ({ status }) => {
+
     const initialRender = () => {
         return document.getElementById('body').innerHTML += `<div class="intro" id="intro">
         <div id="heading">
@@ -150,6 +151,11 @@ export const Intro = ({ status }) => {
 
     clearTimeout(timeout)
     update();
+
+
+    document.getElementById('intro').remove();
+    updateSession({ playing: true })
+    Start();
 }
 
 const update = () => {

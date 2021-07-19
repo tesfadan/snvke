@@ -14,10 +14,17 @@ export const changePosition = (newPosition) => {
 
 export var game = {
     size: 50,
-    foodColor: '#ff0000',
-    snakeColor: '#ff0',
+    foodColor: '#ff1c3a',
+    snakeColor: '#12e772',
+    snakeColorAlt: '#12e772',
+    secondary: '#ff00d4',
+    border: '#ff00d430',
     width: 1400,
-    height: 800
+    height: 800,
+    colors: {
+        head: '#12e772',
+        dying: '#ff0022'
+    }
 }
 
 export var gridNumber = { x: 28, y: 16 };

@@ -1,0 +1,51 @@
+.overlay {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    padding: 50px;
+    position: relative;
+}
+
+.overlayItem {
+    font-weight: 600;
+    text-transform: uppercase;
+    border: 1px solid var(--secondary);
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    font-size: 18px;
+    justify-content: space-evenly;
+    width: 150px;
+    position: absolute;
+    background: #00000050;
+}
+
+.overlayItem label {}
+
+.timeKeeper {}
+
+.topLeft {
+    left: 50px;
+    top: 50px;
+}
+
+.topRight {
+    right: 50px;
+    top: 50px;
+}
+
+.bottomLeft {
+    left: 50px;
+    bottom: 50px;
+}
+
+.bottomRight {
+    right: 50px;
+    bottom: 50px;
+}
+
+.overlayItem.btn {
+    border-color: var(--primary);
+    /* color: var(--primary); */
+}

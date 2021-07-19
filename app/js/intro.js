@@ -1,5 +1,6 @@
 import { Start } from "./game.js";
-import { session, updateSession } from "./variables.js";
+import { drawGrid } from "./grid.js";
+import { session, updateSession, canvas } from "./variables.js";
 
 const bootOptions = [
     { label: "New Game", id: "newGameBtn", action: () => changeHandler("newGame") },
@@ -22,12 +23,24 @@ var focus = 0;
 var options = bootOptions;
 var timeout;
 
-const render = (opt) => { return opt.map(option => `<span class=${0 === focus ? "btn selected" : "btn"} id=${option.id}>${option.label}</span>`) }
+// const render = (opt) => { return opt.map(option => `<span class=${0 === focus ? "btn selected" : "btn"} id=${option.id}>${option.label}</span>`) }
+
+const render = (opt) => {
+    const className = () => {
+        return 0 === focus ? 'btn selected' : 'btn'
+    }
+    var content;
+
+    opt.map(element => {
+        content += (`<div class=${className()} id=${element.id}>${element.label}</div>`);
+    })
+
+    return content.replace('undefined', '');
+}
+
 
 const renderOptions = (options) => {
-    // focus = 0;
-    // update();
-    console.log(focus)
+    console.log(focus);
     document.getElementById('options').innerHTML = render(options);
     update();
 }

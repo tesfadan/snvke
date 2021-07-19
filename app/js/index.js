@@ -3,6 +3,7 @@
 // 2021 
 // https://tesfadan.com
 
+import { drawGrid } from "./grid.js";
 import { Intro } from "./intro.js";
 import { LoadingScreen } from "./loading.js";
 import { session } from "./variables.js";

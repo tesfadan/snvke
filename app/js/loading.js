@@ -11,7 +11,7 @@ var timeout;
 var e = 0;
 
 export const LoadingScreen = async ({ loaded }) => {
-    // drawGrid();
+    drawGrid({ canvas: canvas });
     timeout = setTimeout(() => {
         document.getElementById("body").innerHTML += `
         <canvas id="loading" class="loading" height="50"> </canvas>`;

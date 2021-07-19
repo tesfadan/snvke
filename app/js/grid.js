@@ -16,6 +16,5 @@ export const drawGrid = ({ canvas }) => {
     grid.lineWidth = 1;
     grid.strokeStyle = color;
     grid.stroke();
-
     requestAnimationFrame(() => drawGrid({ canvas }));
 }

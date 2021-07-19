@@ -19,14 +19,16 @@ export const catchFoul = () => {
 
 export const gameOver = () => {
     session.playing = false;
+    session.gameOver = true;
     clearInterval(session.move);
     game.snakeColor = "#ff0000";
     var popInterval;
-    popInterval = setInterval(() => { session.tails.pop() }, session.speed)
+    popInterval = setInterval(() => { session.tails.pop() }, session.speed);
 
     setTimeout(() => {
         session.tails = [];
         game.snakeColor = "#ff0";
+        session.gameOver = false;
         Intro({ status: 'gameOver' });
         clearInterval(popInterval)
     }, (session.tails.length * session.speed) + 500)

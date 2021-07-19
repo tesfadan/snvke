@@ -28,7 +28,8 @@ export var session = {
     tails: [],
     speed: 80,
     foodPosition: { x: 4, y: 7 },
-    move: null
+    move: null,
+    gameOver: false
 }
 
 export const updateSession = (update) => {

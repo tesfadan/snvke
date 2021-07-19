@@ -7,10 +7,14 @@
     display: none;
 }
 
+#heading {
+    display: none;
+}
+
 .options {
     display: flex;
     flex-flow: column;
-    /* gap: 24px; */
+    gap: 24px;
 }
 
 .btn {

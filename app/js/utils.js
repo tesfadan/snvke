@@ -36,3 +36,8 @@ export const randomDirection = () => {
             return 'left'
     }
 }
+
+
+// export const startingPoint =()=>{
+
+// }

@@ -1,0 +1,8 @@
+.ui {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}

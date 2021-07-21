@@ -1,5 +1,14 @@
 .intro {
     text-align: center;
+    width: 100%;
+    position: absolute;
+    /* left: 0px; */
+    /* right: 0px; */
+    width: max-content;
+    justify-content: center;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
 }
 
 .gameTitle {
@@ -8,13 +17,55 @@
 }
 
 #heading {
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    position: relative;
+    margin-top: -72px;
+    margin-bottom: 36px;
+    /* border: 1px;
+    display: block;
+    border: 1px solid var(--secondary);
+    border-color: white;
+    padding: 12px 24px;
+    box-shadow: 4px 4px 0px var(--primary); */
     display: none;
 }
+
+#heading h1 {
+    font-size: 72px;
+    margin: unset;
+}
+
+
+/* 
+
+#heading h1::after {
+    display: block;
+    content: " ";
+    width: 100px;
+    height: 2px;
+    background: red;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+} */
 
 .options {
     display: flex;
     flex-flow: column;
-    gap: 24px;
+    /* gap: 24px; */
+}
+
+.options:last-child {
+    margin-bottom: 0px;
+}
+
+.optionItem {
+    margin-bottom: 24px;
+}
+
+.optionItem:last-of-type {
+    margin-bottom: 0px;
 }
 
 .btn {
@@ -24,7 +75,6 @@
     color: var(--primary);
     border-radius: 3px;
     padding: 12px 24px;
-    cursor: pointer;
     width: 250px;
     border-radius: 4px;
     transition: 0.25s;
@@ -35,7 +85,7 @@
 .btn:active {
     background: var(--primary);
     color: var(--text);
-    box-shadow: 0px 6px 0px var(--border);
+    box-shadow: 0px 4px 0px var(--secondary);
     border-color: transparent;
 }
 

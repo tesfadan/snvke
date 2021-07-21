@@ -1,10 +1,27 @@
 import { updateTail } from "./drawSnake.js";
-import { position, changePosition, gridNumber, session } from "./variables.js";
+import { position, changePosition, gridNumber, session, game } from "./variables.js";
 import { catchFoul } from "./catchFoul.js";
+import { score } from "./score.js";
 
 export const Move = () => {
     var newPosition;
     updateTail();
+
+    const moveScore = () => {
+        if (position.d === 'left' || position.d === 'right') {
+            if (session.tails.length >= gridNumber.x) {
+                score(1)
+            }
+        }
+        else {
+            if (session.tails.length >= gridNumber.y) {
+                score(1)
+            }
+        }
+    }
+
+    moveScore();
+
     switch (position.d) {
         case "right":
             newPosition = { ...position, d: position.d, x: position.x > gridNumber.x - 2 ? 0 : position.x + 1 };
@@ -28,9 +45,15 @@ export const Move = () => {
 
 // KEYSTROKE DETECTOR 
 document.addEventListener('keydown', event => {
+    // console.log(event.keyCode);
     switch (event.keyCode) {
         case 37:
             // Left Arrow 
+            Turn("left")
+            break;
+
+        case 65:
+            // a
             Turn("left")
             break;
 
@@ -39,13 +62,28 @@ document.addEventListener('keydown', event => {
             Turn("right")
             break;
 
+        case 68:
+            // d  
+            Turn("right")
+            break;
+
         case 38:
             // Up Arrow 
             Turn("up")
             break;
 
+        case 87:
+            // w  
+            Turn("up")
+            break;
+
         case 40:
             // Down Arrow 
+            Turn("down")
+            break;
+
+        case 83:
+            // s  
             Turn("down")
             break;
 

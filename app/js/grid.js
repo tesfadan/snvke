@@ -1,6 +1,7 @@
 import { game } from "./variables.js";
 
-export const drawGrid = ({ canvas }) => {
+export const drawGrid = () => {
+    const canvas = document.getElementById('background');
     const variables = { width: 1400, height: 800, color: game.border, size: 50 }
     const { width, height, color, size } = variables;
     const grid = canvas.getContext('2d');
@@ -17,5 +18,4 @@ export const drawGrid = ({ canvas }) => {
     grid.lineWidth = 1;
     grid.strokeStyle = color;
     grid.stroke();
-    requestAnimationFrame(() => drawGrid({ canvas }));
 }

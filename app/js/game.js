@@ -2,29 +2,32 @@ import { drawSnake } from "./drawSnake.js";
 import { drawGrid } from "./grid.js";
 import { Move } from "./move.js";
 import { placeFood } from "./placeFood.js";
-import { blockPositionX, blockPositionY } from "./utils.js";
-import { game, position, session } from "./variables.js";
+import { countTime } from "./time.js";
+import { resetSession, session, startingPoint } from "./variables.js";
 
 export const Start = () => {
     var canvas = document.getElementById("canvas");
     canvas.width = 1400;
     canvas.height = 800;
-
+    startingPoint();
+    resetSession();
     drawOverlay({ canvas });
-
-    drawGrid({ canvas: canvas });
     placeFood({ canvas });
-    setInterval(() => drawSnake({ canvas }), 10);
 
+    const redraw = () => {
+        drawSnake({ canvas });
+    }
+
+    setInterval(() => redraw(), 10);
     session.move = setInterval(() => Move(), session.speed);
-
+    session.timeInterval = setInterval(countTime, 1000);
 }
 
-const drawOverlay = ({ canvas }) => {
+export const drawOverlay = () => {
     var items = [
         {
             label: 'Time',
-            value: '34s',
+            value: '0s',
             id: 'timeKeeper'
         },
         {
@@ -50,6 +53,7 @@ const drawOverlay = ({ canvas }) => {
 
         return `overlayItem ${btn} ${pos}`
     }
+    document.getElementById('overlay').innerHTML = '';
     items.map((item, index) => {
         return document.getElementById('overlay').innerHTML += `<div id=${item.id} class="${className(item, index)}">${item.label !== null ? `<label>${item.label}</label>` : ''
             }

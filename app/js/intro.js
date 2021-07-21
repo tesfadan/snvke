@@ -1,16 +1,18 @@
 import { Start } from "./game.js";
 import { drawGrid } from "./grid.js";
-import { session, updateSession, canvas } from "./variables.js";
+import { session, updateSession, canvas, game } from "./variables.js";
 
 const bootOptions = [
     { label: "New Game", id: "newGameBtn", action: () => changeHandler("newGame") },
-    { label: "Levels", id: "levelsBtn", action: () => changeHandler('levelsBtn') },
-    { label: "Highscore", id: "highScoreBtn", action: () => changeHandler("highscoreBtn") }
+    { label: "Difficulty", id: "levelsBtn", action: () => changeHandler('levelsBtn') },
+    { label: "Highscore", id: "highScoreBtn", action: () => changeHandler("highscoreBtn") },
+    // { label: "Exit", id: "exitBtn", action: () => changeHandler("highscoreBtn") }
+
 ]
 
 const levelOptions = [
     { label: "Easy", id: "easyMode", action: () => changeHandler("easyMode") },
-    { label: "Medium", id: "mediumMode", action: () => changeHandler("mediumMode") },
+    { label: "Intermediate", id: "mediumMode", action: () => changeHandler("mediumMode") },
     { label: "Extreme", id: "extremeMode", action: () => changeHandler("extremeMode") }
 ]
 
@@ -27,7 +29,7 @@ var timeout;
 
 const render = (opt) => {
     const className = () => {
-        return 0 === focus ? 'btn selected' : 'btn'
+        return 0 === focus ? 'btn optionItem selected' : 'optionItem btn'
     }
     var content;
 
@@ -47,7 +49,7 @@ const renderOptions = (options) => {
 var lastOptions = [];
 
 const home = () => {
-    changeHeading('Game Title');
+    changeHeading(game.title);
     options = bootOptions;
     focus = 0;
     renderOptions(options);
@@ -95,7 +97,7 @@ const changeHandler = (e) => {
         case 'back':
             focus = 2;
             options = lastOptions;
-            changeHeading('Game Title');
+            changeHeading(game.title);
             renderOptions(lastOptions);
             break;
         case 'resetHS':
@@ -123,15 +125,18 @@ const changeHeading = (heading) => {
 
 export const Intro = ({ status }) => {
 
+    document.getElementById('ui').innerHTML += `
+    <div id="overlay" class="overlay"></div>
+    `
     const initialRender = () => {
-        return document.getElementById('body').innerHTML += `<div class="intro" id="intro">
+        return document.getElementById('ui').innerHTML += `<div class="intro" id="intro">
         <div id="heading">
         </div>
     <div class="options" id="options"></div></div>` }
     initialRender();
 
     if (status === 'boot') {
-        document.getElementById('heading').innerHTML += `<h1> Game Title </h1>`
+        document.getElementById('heading').innerHTML += `<h1>${game.title}</h1>`
     }
     else if (status === 'gameOver') {
         focus = 0;
@@ -152,16 +157,15 @@ export const Intro = ({ status }) => {
     clearTimeout(timeout)
     update();
 
-
-    document.getElementById('intro').remove();
-    updateSession({ playing: true })
-    Start();
+    // document.getElementById('intro').remove();
+    // updateSession({ playing: true })
+    // Start();
 }
 
 const update = () => {
     options.map((option, index) => {
         var btn = document.getElementById(option.id);
-        btn.className = focus === index ? 'btn selected' : 'btn blurred';
+        btn.className = focus === index ? 'btn optionItem selected' : 'btn optionItem blurred';
     });
     // document.getElementById("audio").innerHTML += '<audio src="/audio/sssnake_bleep.mp3" id="bleep" autoPlay></audio>';
     // var bleep = document.getElementById(`bleep`);

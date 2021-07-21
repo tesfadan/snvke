@@ -1,14 +1,9 @@
+import { score } from "./score.js";
 import { blockPositionX, blockPositionY, random } from "./utils.js";
-import { game, gridNumber, position, session } from "./variables.js";
+import { game, gridNumber, position, session, avoidThese } from "./variables.js";
 
 
 
-const avoidThis = [...session.tails,
-[1, 1], [2, 1], [3, 1],
-[gridNumber.x - 1, 1],
-[gridNumber.x - 2, 1]
-[gridNumber.x - 3, 1]
-]
 
 // Draw Food
 export const placeFood = ({ canvas }) => {
@@ -22,22 +17,24 @@ export const placeFood = ({ canvas }) => {
     eatFood({ food });
 }
 
-const foodPosition = () => {
+export const foodPosition = () => {
     var pos = { x: random(0, gridNumber.x - 1), y: random(0, gridNumber.y - 1) };
-    var y = avoidThis.filter(item => item[0] === pos.x && item[1] === pos.y);
+    var y = avoidThese.filter(item => item[0] === pos.x && item[1] === pos.y);
     while (y.length > 0) {
         pos = { x: random(0, gridNumber.x - 1), y: random(0, gridNumber.y - 1) };
-        y = avoidThis.filter(item => item[0] === pos.x);
+        y = avoidThese.filter(item => item[0] === pos.x);
     }
+    session.foodPosition = pos;
     return pos
 }
 
+foodPosition();
 
 export const eatFood = ({ food }) => {
     if (position.x === session.foodPosition.x && position.y === session.foodPosition.y) {
-        // score();
+        score(10);
         food.clearRect(0, 0, game.width, game.height);
-        session.foodPosition = foodPosition();
+        foodPosition();
         session.tails.push({ ...session.foodPosition });
     }
 }

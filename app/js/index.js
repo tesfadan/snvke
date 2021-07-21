@@ -11,4 +11,6 @@ import { session } from "./variables.js";
 // LoadingScreen({ loaded: false });
 // setTimeout(() => Intro({ status: 'boot' }), 3350);
 
+
+drawGrid();
 Intro({ status: 'boot' })

@@ -1,5 +1,5 @@
 import { drawGrid } from "./grid.js";
-import { canvas } from "./variables.js";
+import { canvas, game } from "./variables.js";
 
 const blockPosition = (x) => {
     return x * 1;
@@ -11,9 +11,10 @@ var timeout;
 var e = 0;
 
 export const LoadingScreen = async ({ loaded }) => {
-    drawGrid({ canvas: canvas });
+    drawGrid();
+
     timeout = setTimeout(() => {
-        document.getElementById("body").innerHTML += `
+        document.getElementById("ui").innerHTML += `
         <canvas id="loading" class="loading" height="50"> </canvas>`;
         interval = setInterval(barAnimation, 0.5);
         drawLoadingBar();
@@ -45,7 +46,7 @@ const barAnimation = () => {
 const drawLoadingBar = () => {
     var loadingCanvas = document.getElementById("loading");
     const bar = loadingCanvas.getContext('2d');
-    bar.fillStyle = '#434f57';
+    bar.fillStyle = game.colors.primary;
     // bar.clearRect(0, 0, 300, 120);
     bar.beginPath();
     bar.fillRect(blockPosition(position.x), 0, 50, 50);

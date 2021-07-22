@@ -1,5 +1,7 @@
+import { resetHighscore, setLevel } from "./functions.js";
 import { Start } from "./game.js";
 import { drawGrid } from "./grid.js";
+import { GameTitle, HighScore } from "./ui.js";
 import { session, updateSession, canvas, game } from "./variables.js";
 
 const bootOptions = [
@@ -49,7 +51,8 @@ const renderOptions = (options) => {
 var lastOptions = [];
 
 const home = () => {
-    changeHeading(game.title);
+    // changeHeading(game.title);
+    document.getElementById("heading").innerHTML = ``
     options = bootOptions;
     focus = 0;
     renderOptions(options);
@@ -62,11 +65,12 @@ const changeHandler = (e) => {
             options = levelOptions;
             focus = 0;
             renderOptions(options);
-            changeHeading('Difficulty');
+            // changeHeading('Difficulty');
             break;
         case 'easyMode':
             console.log("Change Level to easy");
-            updateSession({ speed: 80 });
+            // updateSession({ speed: 80 });
+            setLevel(0);
             options = bootOptions;
             focus = 1;
             renderOptions(options);
@@ -74,14 +78,16 @@ const changeHandler = (e) => {
             break;
         case 'mediumMode':
             console.log("Change Level to Medium");
-            updateSession({ speed: 60 });
+            // updateSession({ speed: 60 });
+            setLevel(1);
             options = bootOptions;
             focus = 1;
             home();
             break;
         case 'extremeMode':
             console.log("Change Level to Exrtrem");
-            updateSession({ speed: 40 });
+            // updateSession({ speed: 40 });
+            setLevel(2);
             options = bootOptions;
             focus = 1;
             home();
@@ -92,17 +98,23 @@ const changeHandler = (e) => {
             console.log("Highscore");
             options = highscoreOptions;
             renderOptions(options);
-            changeHeading('Highscore');
+            document.getElementById("gameTitle").className += ' small hidden';
+            document.getElementById("heading").innerHTML = HighScore();
             break;
         case 'back':
             focus = 2;
             options = lastOptions;
-            changeHeading(game.title);
+            // changeHeading(game.title);
+            document.getElementById("heading").innerHTML = ``;
+            document.getElementById("gameTitle").className = 'gameTitle'
             renderOptions(lastOptions);
             break;
         case 'resetHS':
             focus = options.length - 1;
             options = lastOptions;
+            document.getElementById("heading").innerHTML = ``;
+            document.getElementById("gameTitle").className = 'gameTitle'
+            resetHighscore();
             home();
             break;
         case 'newGame':
@@ -120,7 +132,7 @@ const changeHandler = (e) => {
 }
 
 const changeHeading = (heading) => {
-    document.getElementById("heading").innerHTML = `<h1>${heading}</h1>`;
+    document.getElementById("heading").innerHTML = `<h4>${heading}</h4>`;
 }
 
 export const Intro = ({ status }) => {
@@ -130,13 +142,14 @@ export const Intro = ({ status }) => {
     `
     const initialRender = () => {
         return document.getElementById('ui').innerHTML += `<div class="intro" id="intro">
+        ${GameTitle()}
         <div id="heading">
         </div>
     <div class="options" id="options"></div></div>` }
     initialRender();
 
     if (status === 'boot') {
-        document.getElementById('heading').innerHTML += `<h1>${game.title}</h1>`
+        document.getElementById('heading').innerHTML = ``;
     }
     else if (status === 'gameOver') {
         focus = 0;
@@ -174,26 +187,29 @@ const update = () => {
 
 document.addEventListener('keydown', event => {
     // if (!session.playing) {
-    switch (event.keyCode) {
-        case 13:
-            options[focus].action();
-            break;
-        case 38:
-            // Up Arrow 
-            if (focus === 0) { focus = options.length - 1 }
-            else { focus-- }
-            update();
-            break;
 
-        case 40:
-            // Down Arrow 
-            if (focus === options.length - 1) { focus = 0 }
-            else { focus++ }
-            update();
-            break;
+    if (!session.playing) {
+        switch (event.keyCode) {
+            case 13:
+                options[focus].action();
+                break;
+            case 38:
+                // Up Arrow 
+                if (focus === 0) { focus = options.length - 1 }
+                else { focus-- }
+                update();
+                break;
 
-        default:
-            break;
+            case 40:
+                // Down Arrow 
+                if (focus === options.length - 1) { focus = 0 }
+                else { focus++ }
+                update();
+                break;
+
+            default:
+                break;
+        }
     }
     // }
 });

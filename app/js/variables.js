@@ -1,5 +1,3 @@
-import { score } from "./score.js";
-import { countTime } from "./time.js";
 import { random, randomDirection } from "./utils.js";
 
 export var canvas = document.getElementById("canvas");
@@ -27,6 +25,7 @@ export const changePosition = (newPosition) => {
     position = newPosition;
 }
 
+
 export var game = {
     title: 'sssnake',
     size: 50,
@@ -41,8 +40,11 @@ export var game = {
         primary: '#ffee00',
         head: '#12e772',
         dying: '#ff0022'
-    }
+    },
+    highscore: 0,
+    level: 0
 }
+
 
 export var gridNumber = { x: 28, y: 16 };
 
@@ -55,7 +57,8 @@ export var session = {
     timeInterval: null,
     seconds: 0,
     score: 0,
-    gameOver: false
+    gameOver: false,
+    paused: false
 };
 
 export const resetSession = () => {
@@ -76,6 +79,10 @@ export const resetSession = () => {
 
 export const updateSession = (update) => {
     session = { ...session, ...update };
+}
+
+export const updateGame = (update) => {
+    game = { ...game, ...update };
 }
 
 export const avoidThese = [...session.tails,

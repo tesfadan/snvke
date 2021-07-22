@@ -1,9 +1,10 @@
 import { drawSnake } from "./drawSnake.js";
+import { getHighscore } from "./functions.js";
 import { drawGrid } from "./grid.js";
 import { Move } from "./move.js";
 import { placeFood } from "./placeFood.js";
 import { countTime } from "./time.js";
-import { resetSession, session, startingPoint } from "./variables.js";
+import { game, resetSession, session, startingPoint, updateGame, updateSession } from "./variables.js";
 
 export const Start = () => {
     var canvas = document.getElementById("canvas");
@@ -13,15 +14,27 @@ export const Start = () => {
     resetSession();
     drawOverlay({ canvas });
     placeFood({ canvas });
+    updateSession({ speed: game.level === 0 ? 70 : game.level === 1 ? 50 : 40 })
+
+    updateSession({ tails: [] })
+
+    document.getElementById("canvas").style = `opacity:1`;
+
+    updateGame({ highscore: getHighscore() })
 
     const redraw = () => {
         drawSnake({ canvas });
     }
 
+    session.playing = true;
+
     setInterval(() => redraw(), 10);
     session.move = setInterval(() => Move(), session.speed);
     session.timeInterval = setInterval(countTime, 1000);
+
 }
+
+
 
 export const drawOverlay = () => {
     var items = [
@@ -32,7 +45,7 @@ export const drawOverlay = () => {
         },
         {
             label: 'Score',
-            value: 420,
+            value: 0,
             id: 'scoreKeeper'
         },
         {

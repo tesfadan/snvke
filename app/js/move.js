@@ -2,6 +2,8 @@ import { updateTail } from "./drawSnake.js";
 import { position, changePosition, gridNumber, session, game } from "./variables.js";
 import { catchFoul } from "./catchFoul.js";
 import { score } from "./score.js";
+import { pauseResume, speed } from "./functions.js";
+import { keyMove, keyPause } from "./keystroke.js";
 
 export const Move = () => {
     var newPosition;
@@ -45,55 +47,74 @@ export const Move = () => {
 
 // KEYSTROKE DETECTOR 
 document.addEventListener('keydown', event => {
-    // console.log(event.keyCode);
+    console.log(event.keyCode);
     switch (event.keyCode) {
         case 37:
             // Left Arrow 
-            Turn("left")
+            keyMove("left")
             break;
 
         case 65:
             // a
-            Turn("left")
+            keyMove("left")
             break;
 
         case 39:
             // Right Arrow 
-            Turn("right")
+            keyMove("right")
             break;
 
         case 68:
             // d  
-            Turn("right")
+            keyMove("right")
             break;
 
         case 38:
             // Up Arrow 
-            Turn("up")
+            keyMove("up")
             break;
 
         case 87:
             // w  
-            Turn("up")
+            keyMove("up")
             break;
 
         case 40:
             // Down Arrow 
-            Turn("down")
+            keyMove("down")
             break;
 
         case 83:
             // s  
-            Turn("down")
+            keyMove("down")
             break;
 
+        case 80:
+            // p  
+            keyPause()
+            break;
+
+
+        case 16:
+        // speed('up');
         default:
             break;
     }
 });
 
+document.addEventListener('keyup', event => {
+    switch (event.keyCode) {
+        case 16:
+            // speed('down')
+            break;
 
-const Turn = (dir) => {
+        default:
+            break;
+    }
+})
+
+
+export const Turn = (dir) => {
     // THIS THIS THIS 
     // CALCULATE IF THE MOVE CAUSES FOUL FIRST
     // if the foul to be caused is with the first 4 tails then stop it 

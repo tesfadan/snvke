@@ -49,5 +49,6 @@
 .overlayItem.btn {
     border-radius: 0px;
     border-color: var(--primary);
+    width: 150px;
     /* color: var(--primary); */
 }

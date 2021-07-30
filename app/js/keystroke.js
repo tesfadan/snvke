@@ -3,6 +3,7 @@
 
 import { pauseResume } from "./functions.js";
 import { Turn } from "./move.js";
+import { NavEnter, NavMove } from "./navigation.js";
 import { session } from "./variables.js";
 
 export function keyMove(dir) {
@@ -10,11 +11,20 @@ export function keyMove(dir) {
         Turn(dir);
     }
     else {
+        // console.log("Navigation");
+        // console.log(dir)
+        NavMove(dir)
     }
 }
 
 export function keyPause() {
     if (session.playing) {
         pauseResume();
+    }
+}
+
+export function enterKey() {
+    if (session.navigation) {
+        NavEnter();
     }
 }

@@ -1,7 +1,7 @@
 import { getHighscore, setHighscore } from "./functions.js";
 import { GameOverScreen } from "./screens.js";
 // import { Intro } from "./intro.js";
-import { game, position, session } from "./variables.js";
+import { game, position, session, updateSession } from "./variables.js";
 
 export const catchFoul = () => {
     var foul_pos = session.tails.filter(tail => tail[0] === position.x && tail[1] === position.y);
@@ -27,8 +27,7 @@ export const gameOver = () => {
     var snakeMainColor = game.snakeColor;
     game.snakeColor = game.colors.dying;
     var popInterval;
-    popInterval = setInterval(() => { session.tails.pop() }, session.speed / 2);
-
+    popInterval = setInterval(() => { session.tails.pop() }, 60);
 
     if (session.score > getHighscore()) {
         console.log("New Highscore")
@@ -36,11 +35,13 @@ export const gameOver = () => {
     }
 
     setTimeout(() => {
-        document.getElementById("canvas").style = `opacity: 0.3;     filter: grayscale(1);`;
+        document.getElementById("canvas").style = `opacity: 0.1;     filter: grayscale(1);`;
         game.snakeColor = snakeMainColor;
         session.gameOver = false;
         session.paused = false;
+        document.getElementById('pauseBtn').remove();
         GameOverScreen();
         clearInterval(popInterval);
-    }, (session.tails.length * session.speed / 2) + 250)
+        updateSession({ navigation: true });
+    }, (session.tails.length * 60) + 250)
 }

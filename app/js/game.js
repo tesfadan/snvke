@@ -10,16 +10,19 @@ export const Start = () => {
     clearInterval(session.move);
     clearInterval(session.timeInterval);
 
+    // document.removeEventListener("keydown", document)
+
+    console.log(session.navigationEventListener)
+
     var canvas = document.getElementById("canvas");
     canvas.width = 1400;
     canvas.height = 800;
     startingPoint();
     resetSession();
-    drawOverlay({ canvas });
+    document.getElementById('ui').innerHTML = '';
+    drawOverlay(ovelayItems.gamePlay);
     placeFood({ canvas });
-    updateSession({ speed: game.level === 0 ? 70 : game.level === 1 ? 50 : 40 });
-
-    updateSession({ tails: [] })
+    updateSession({ tails: [], navigation: false, speed: game.level === 0 ? 90 : game.level === 1 ? 70 : 40 });
 
     document.getElementById("canvas").style = `opacity:1`;
 
@@ -37,9 +40,8 @@ export const Start = () => {
 }
 
 
-
-export const drawOverlay = () => {
-    var items = [
+export const ovelayItems = {
+    gamePlay: [
         {
             label: 'Time',
             value: '0s',
@@ -56,9 +58,11 @@ export const drawOverlay = () => {
             btn: true,
             id: 'pauseBtn'
         }
-
     ]
+}
 
+
+export const drawOverlay = (items) => {
     const className = (item, index) => {
         var pos = index === 0 ? 'topLeft' :
             index === 1 ? 'topRight' :
@@ -68,7 +72,7 @@ export const drawOverlay = () => {
 
         return `overlayItem ${btn} ${pos}`
     }
-    document.getElementById('ui').innerHTML = '';
+    // document.getElementById('ui').innerHTML = '';
     items.map((item, index) => {
         return document.getElementById('ui').innerHTML += `<div id=${item.id} class="${className(item, index)}">${item.label !== null ? `<label>${item.label}</label>` : ''
             }

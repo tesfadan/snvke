@@ -2,9 +2,6 @@ import { score } from "./score.js";
 import { blockPositionX, blockPositionY, random } from "./utils.js";
 import { game, gridNumber, position, session, avoidThese } from "./variables.js";
 
-
-
-
 // Draw Food
 export const placeFood = ({ canvas }) => {
     const food = canvas.getContext('2d');

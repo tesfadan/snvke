@@ -38,13 +38,12 @@ export const resetHighscore = async () => {
     // </div>`
     window.localStorage.setItem('highscore', '0');
 
-    return 1
+    return 1;
 }
 
 export const setLevel = async (level) => {
     window.localStorage.setItem("level", level.toString());
     updateGame({ level: level });
-
     return 1
 }
 

@@ -1,21 +1,23 @@
 import { resetHighscore, setLevel } from "./functions.js";
 import { Start } from "./game.js";
-import { Navigation } from "./navigation.js";
+import { focused, Navigation, updateFocused } from "./navigation.js";
+import { session, updateSession } from "./variables.js";
+
 
 const options = {
     mainMenu: [
-        { label: "New Game", id: "playBtn", action: () => Start() },
-        { label: "Levels", id: "levelsBtn", action: () => Levels() },
-        { label: "Highscore", id: "highscoreBtn", action: () => HighScore() },
+        { label: "New Game", id: "playBtn", action: () => { Start() } },
+        { label: "Levels", id: "levelsBtn", action: () => { Levels() } },
+        { label: "Highscore", id: "highscoreBtn", action: () => { HighScore() } },
     ],
     gameOver: [
-        { label: "Play Again", id: "playAgain", action: () => Start() },
-        { label: "Main Menu", id: "mainMenu", action: () => MainMenu() }
+        { label: "Play Again", id: "playAgain", action: () => { Start() } },
+        { label: "Main Menu", id: "mainMenu", action: () => { MainMenu() } }
     ],
     levels: [
-        { label: "Easy", id: "easyBtn", action: () => setLevel(0).then(() => MainMenu()) },
-        { label: "Intermediate", id: "intermediateBtn", action: () => setLevel(1).then(() => MainMenu()) },
-        { label: "Extreme", id: "extremeBtn", action: () => setLevel(2).then(() => MainMenu()) }
+        { label: "Easy", id: "easyBtn", action: () => { setLevel(0).then(() => MainMenu()) } },
+        { label: "Intermediate", id: "intermediateBtn", action: () => { setLevel(1).then(() => MainMenu()) } },
+        { label: "Extreme", id: "extremeBtn", action: () => { setLevel(2).then(() => MainMenu()) } }
     ],
     highscore: [
         { label: "Back", id: "Back", action: () => MainMenu() },
@@ -24,7 +26,9 @@ const options = {
 }
 
 const ui = document.getElementById("ui");
+
 export const MainMenu = () => {
+    updateSession({ options: options.mainMenu });
     ui.innerHTML = `
         <div id="mainMenuScreen" class="screen mainMenuScreen">
         <h1 class="gameTitle heading">snvke</h1>
@@ -34,7 +38,9 @@ export const MainMenu = () => {
 }
 
 export const GameOverScreen = () => {
-    ui.innerHTML = `
+    updateSession({ options: options.gameOver });
+
+    ui.innerHTML += `
         <div id="gameOverScreen" class="screen gameOverScreen">
         <h1 class="gameOverText heading">Game Over</h1>
         ${Navigation(options.gameOver)}
@@ -43,6 +49,8 @@ export const GameOverScreen = () => {
 }
 
 export const Levels = () => {
+    updateSession({ options: options.levels });
+
     ui.innerHTML = `
         <div id="levelsScreen" class="screen levelsScreen">
         <h1 class="level heading">Level</h1>
@@ -52,6 +60,8 @@ export const Levels = () => {
 }
 
 export const HighScore = () => {
+    updateSession({ options: options.highscore });
+    updateFocused(0);
     ui.innerHTML = `
         <div id="highscoreScreen" class="screen highscoreScreen">
         <h1 class="highscoreText heading">Highscore</h1>

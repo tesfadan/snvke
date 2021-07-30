@@ -3,7 +3,7 @@ import { position, changePosition, gridNumber, session, game } from "./variables
 import { catchFoul, gameOver } from "./catchFoul.js";
 import { score } from "./score.js";
 import { pauseResume, speed } from "./functions.js";
-import { keyMove, keyPause } from "./keystroke.js";
+import { enterKey, keyMove, keyPause } from "./keystroke.js";
 import { Start } from "./game.js"
 import { MainMenu } from "./screens.js";
 
@@ -49,7 +49,7 @@ export const Move = () => {
 
 // KEYSTROKE DETECTOR 
 document.addEventListener('keydown', event => {
-    console.log(event.keyCode);
+    // console.log(event.keyCode);
     switch (event.keyCode) {
         case 37:
             // Left Arrow 
@@ -109,6 +109,10 @@ document.addEventListener('keydown', event => {
             break;
         case 16:
         // speed('up');
+
+        case 13:
+            enterKey()
+            break;
         default:
             break;
     }

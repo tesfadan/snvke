@@ -58,7 +58,11 @@ export var session = {
     seconds: 0,
     score: 0,
     gameOver: false,
-    paused: false
+    paused: false,
+    navigationEventListener: null,
+    focused: 0,
+    options: null,
+    navigation: true
 };
 
 export const resetSession = () => {

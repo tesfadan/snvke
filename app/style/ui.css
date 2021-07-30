@@ -8,59 +8,30 @@
     z-index: 12;
 }
 
-.gameTitle {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.gameTitle div {
-    border-radius: 2px;
-    text-transform: lowercase;
-    padding: 10px 18px;
-    background: var(--snakeFood);
-    transform: rotateZ( 355deg);
-    box-shadow: 0px 0px 24px var(--secondary);
-    font-size: 44px;
-    text-transform: uppercase;
-    font-weight: 700;
-    text-shadow: 1px 2px 0px var(--secondary);
-}
-
-.gameTitle.big {
-    transform: rotateZ( 355deg) scale(1.5);
-}
-
-.gameTitle.small {
-    transform: rotateZ( 355deg) scale(0.5);
-}
-
-.gameTitle.hidden {
-    display: none;
-}
-
-
-/* Highscore */
-
-#highscore {
-    /* background: red; */
-    padding: 4px 24px;
-    border: 1px solid var(--secondary);
-    margin-bottom: 18px;
+.btn {
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    border: 2px solid var(--primary);
+    background: unset;
+    color: var(--primary);
+    border-radius: 3px;
+    padding: 12px 24px;
+    width: 250px;
     border-radius: 4px;
-    padding-top: 12px;
+    transition: 0.25s;
+    box-shadow: 0px 2px 0px var(--border);
 }
 
-#highscore label {
-    font-size: 14px;
-    font-weight: 500;
-    text-transform: uppercase;
-    margin-top: 24px;
+.btn.selected,
+.btn:active {
+    background: var(--primary);
+    color: var(--text);
+    box-shadow: 0px 4px 0px var(--secondary);
+    border-color: transparent;
 }
 
-#highscore div {
-    font-size: 64px;
-    font-weight: 700;
+.btn:active,
+.btn.click {
+    box-shadow: 0px 2px 0px var(--border);
 }

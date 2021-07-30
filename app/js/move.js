@@ -1,9 +1,11 @@
 import { updateTail } from "./drawSnake.js";
 import { position, changePosition, gridNumber, session, game } from "./variables.js";
-import { catchFoul } from "./catchFoul.js";
+import { catchFoul, gameOver } from "./catchFoul.js";
 import { score } from "./score.js";
 import { pauseResume, speed } from "./functions.js";
 import { keyMove, keyPause } from "./keystroke.js";
+import { Start } from "./game.js"
+import { MainMenu } from "./screens.js";
 
 export const Move = () => {
     var newPosition;
@@ -94,7 +96,17 @@ document.addEventListener('keydown', event => {
             keyPause()
             break;
 
+        case 79:
+            gameOver()
+            break
 
+        case 220:
+            Start();
+            break
+
+        case 73:
+            MainMenu();
+            break;
         case 16:
         // speed('up');
         default:

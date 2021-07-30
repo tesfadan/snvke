@@ -10,7 +10,6 @@ export function keyMove(dir) {
         Turn(dir);
     }
     else {
-
     }
 }
 

@@ -27,13 +27,25 @@ export const getHighscore = () => {
     return highscore;
 }
 
-export const resetHighscore = () => {
+export const resetHighscore = async () => {
+    // const handleClick = () => {
+    //     alert("Reset")
+    // }
+    // document.getElementById('overlay').innerHTML = `<div class="alert">
+    // <h4>Reset Highscore to 0? </h4>
+    // <button> Confirm </button>
+    // <button> Cancel </button>
+    // </div>`
     window.localStorage.setItem('highscore', '0');
+
+    return 1
 }
 
-export const setLevel = (level) => {
+export const setLevel = async (level) => {
     window.localStorage.setItem("level", level.toString());
     updateGame({ level: level });
+
+    return 1
 }
 
 export const getLevel = () => {

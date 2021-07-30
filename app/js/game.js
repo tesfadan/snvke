@@ -7,6 +7,9 @@ import { countTime } from "./time.js";
 import { game, resetSession, session, startingPoint, updateGame, updateSession } from "./variables.js";
 
 export const Start = () => {
+    clearInterval(session.move);
+    clearInterval(session.timeInterval);
+
     var canvas = document.getElementById("canvas");
     canvas.width = 1400;
     canvas.height = 800;
@@ -14,7 +17,7 @@ export const Start = () => {
     resetSession();
     drawOverlay({ canvas });
     placeFood({ canvas });
-    updateSession({ speed: game.level === 0 ? 70 : game.level === 1 ? 50 : 40 })
+    updateSession({ speed: game.level === 0 ? 70 : game.level === 1 ? 50 : 40 });
 
     updateSession({ tails: [] })
 
@@ -31,7 +34,6 @@ export const Start = () => {
     setInterval(() => redraw(), 10);
     session.move = setInterval(() => Move(), session.speed);
     session.timeInterval = setInterval(countTime, 1000);
-
 }
 
 
@@ -66,9 +68,9 @@ export const drawOverlay = () => {
 
         return `overlayItem ${btn} ${pos}`
     }
-    document.getElementById('overlay').innerHTML = '';
+    document.getElementById('ui').innerHTML = '';
     items.map((item, index) => {
-        return document.getElementById('overlay').innerHTML += `<div id=${item.id} class="${className(item, index)}">${item.label !== null ? `<label>${item.label}</label>` : ''
+        return document.getElementById('ui').innerHTML += `<div id=${item.id} class="${className(item, index)}">${item.label !== null ? `<label>${item.label}</label>` : ''
             }
             <div>${item.value}</div></div > `;
     })

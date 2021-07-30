@@ -6,6 +6,7 @@ https://tesfadan.com */
 @import "./intro.css";
 @import "./overlay.css";
 @import "./ui.css";
+@import "./screens.css";
 :root {
     --darkBackground: #000000;
     --background: #000000e1;
@@ -19,13 +20,14 @@ https://tesfadan.com */
 }
 
 * {
-    cursor: none;
+    /* cursor: none; */
 }
 
 html {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 body {

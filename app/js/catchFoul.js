@@ -1,6 +1,7 @@
 import { getHighscore, setHighscore } from "./functions.js";
-import { Intro } from "./intro.js";
-import { game, position, session, updateSession } from "./variables.js";
+import { GameOverScreen } from "./screens.js";
+// import { Intro } from "./intro.js";
+import { game, position, session } from "./variables.js";
 
 export const catchFoul = () => {
     var foul_pos = session.tails.filter(tail => tail[0] === position.x && tail[1] === position.y);
@@ -34,18 +35,12 @@ export const gameOver = () => {
         setHighscore({ score: session.score });
     }
 
-
     setTimeout(() => {
         document.getElementById("canvas").style = `opacity: 0.3;     filter: grayscale(1);`;
         game.snakeColor = snakeMainColor;
         session.gameOver = false;
         session.paused = false;
-        Intro({ status: 'gameOver' });
+        GameOverScreen();
         clearInterval(popInterval);
-        removeOverlay();
     }, (session.tails.length * session.speed / 2) + 250)
-}
-
-const removeOverlay = () => {
-    document.getElementById('overlay').remove();
 }

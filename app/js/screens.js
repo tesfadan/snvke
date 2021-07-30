@@ -1,8 +1,7 @@
-import { resetHighscore, setLevel } from "./functions.js";
+import { getHighscore, resetHighscore, setLevel } from "./functions.js";
 import { Start } from "./game.js";
 import { focused, Navigation, updateFocused } from "./navigation.js";
 import { session, updateSession } from "./variables.js";
-
 
 const options = {
     mainMenu: [
@@ -20,8 +19,8 @@ const options = {
         { label: "Extreme", id: "extremeBtn", action: () => { setLevel(2).then(() => MainMenu()) } }
     ],
     highscore: [
-        { label: "Back", id: "Back", action: () => MainMenu() },
-        { label: "Reset", id: "resetHS", action: () => resetHighscore().then(() => MainMenu()) }
+        { label: "Back", id: "Back", action: () => { MainMenu() } },
+        { label: "Reset", id: "resetHS", action: () => resetHighscore() }
     ]
 }
 
@@ -49,6 +48,7 @@ export const GameOverScreen = () => {
 }
 
 export const Levels = () => {
+    updateFocused(0);
     updateSession({ options: options.levels });
 
     ui.innerHTML = `
@@ -65,6 +65,15 @@ export const HighScore = () => {
     ui.innerHTML = `
         <div id="highscoreScreen" class="screen highscoreScreen">
         <h1 class="highscoreText heading">Highscore</h1>
+        <div class="highScoreBox">
+            <span class="highScoreValue">
+            ${getHighscore()}
+            </span>
+
+            <span class="bgValue highScoreValue">
+            ${getHighscore()}
+            </span>
+        </div>
         ${Navigation(options.highscore)}
         </div>
     `;

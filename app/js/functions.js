@@ -36,7 +36,10 @@ export const resetHighscore = async () => {
     // <button> Confirm </button>
     // <button> Cancel </button>
     // </div>`
-    window.localStorage.setItem('highscore', '0');
+    // 
+    let reset = confirm("Confirm that you would like to reset the current highscore.")
+
+    reset ? window.localStorage.setItem('highscore', '0') : null;
 
     return 1;
 }

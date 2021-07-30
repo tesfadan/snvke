@@ -86,3 +86,14 @@
     z-index: 1;
     width: 100%;
 }
+
+.credit {
+    position: absolute;
+    bottom: 48px;
+    cursor: pointer;
+}
+
+.credit a {
+    color: white;
+    opacity: 0.3;
+}

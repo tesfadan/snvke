@@ -21,6 +21,7 @@
     border-radius: 4px;
     transition: 0.25s;
     box-shadow: 0px 2px 0px var(--border);
+    margin-bottom: 24px;
 }
 
 .btn.selected,
@@ -34,4 +35,8 @@
 .btn:active,
 .btn.click {
     box-shadow: 0px 2px 0px var(--border);
+}
+
+.btn:last-of-type {
+    margin-bottom: 0px;
 }

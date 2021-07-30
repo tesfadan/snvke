@@ -26,12 +26,23 @@ const options = {
 
 const ui = document.getElementById("ui");
 
+
+const Credit = () => {
+
+    return `
+        <div class="credit">
+            <a href="https://twitter.com/tesfadan">tesfadan</a>
+        </div>
+    `
+}
+
 export const MainMenu = () => {
     updateSession({ options: options.mainMenu });
     ui.innerHTML = `
         <div id="mainMenuScreen" class="screen mainMenuScreen">
         <h1 class="gameTitle heading">snvke</h1>
         ${Navigation(options.mainMenu)}
+        ${Credit()}
     </div>
     `;
 }

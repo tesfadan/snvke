@@ -108,8 +108,8 @@ document.addEventListener('keydown', event => {
             MainMenu();
             break;
         case 16:
-        // speed('up');
-
+            // speed('up');
+            break;
         case 13:
             enterKey()
             break;

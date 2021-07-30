@@ -28,19 +28,8 @@ export const getHighscore = () => {
 }
 
 export const resetHighscore = async () => {
-    // const handleClick = () => {
-    //     alert("Reset")
-    // }
-    // document.getElementById('overlay').innerHTML = `<div class="alert">
-    // <h4>Reset Highscore to 0? </h4>
-    // <button> Confirm </button>
-    // <button> Cancel </button>
-    // </div>`
-    // 
     let reset = confirm("Confirm that you would like to reset the current highscore.")
-
     reset ? window.localStorage.setItem('highscore', '0') : null;
-
     return 1;
 }
 

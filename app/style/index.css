@@ -3,7 +3,6 @@ Tesfa Demissie
 2021
 https://tesfadan.com */
 
-@import "./intro.css";
 @import "./overlay.css";
 @import "./ui.css";
 @import "./screens.css";
@@ -20,7 +19,7 @@ https://tesfadan.com */
 }
 
 * {
-    /* cursor: none; */
+    cursor: none;
     user-select: none;
 }
 

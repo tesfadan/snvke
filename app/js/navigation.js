@@ -40,27 +40,3 @@ export const NavMove = (dir) => {
 export const NavEnter = () => {
     session.options[focused].action();
 }
-
-// session.navigationEventListener = document.addEventListener("keydown", event => {
-//     // console.log(event.keyCode);
-//     switch (event.keyCode) {
-//         case 38:
-//             // up 
-//             focused === 0 ? focused = session.options.length - 1 : focused--;
-//             update();
-//             break;
-
-//         case 40:
-//             // down 
-//             focused === session.options.length - 1 ? focused = 0 : focused++;
-//             update();
-//             break;
-
-//         case 13:
-//             // enter 
-//             session.options[focused].action();
-//             break;
-//         default:
-//             break;
-//     }
-// });

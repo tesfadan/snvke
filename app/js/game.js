@@ -1,6 +1,5 @@
 import { drawSnake } from "./drawSnake.js";
 import { getHighscore } from "./functions.js";
-import { drawGrid } from "./grid.js";
 import { Move } from "./move.js";
 import { placeFood } from "./placeFood.js";
 import { countTime } from "./time.js";
@@ -9,10 +8,6 @@ import { game, resetSession, session, startingPoint, updateGame, updateSession }
 export const Start = () => {
     clearInterval(session.move);
     clearInterval(session.timeInterval);
-
-    // document.removeEventListener("keydown", document)
-
-    console.log(session.navigationEventListener)
 
     var canvas = document.getElementById("canvas");
     canvas.width = 1400;

@@ -24,11 +24,15 @@ export const setHighscore = ({ score }) => {
 
 export const getHighscore = () => {
     var highscore = parseInt(window.localStorage.getItem('highscore'));
-    return highscore;
+    return highscore !== null ? highscore : 0;
 }
 
 export const resetHighscore = async () => {
-    let reset = confirm("Confirm that you would like to reset the current highscore.")
+    let reset = confirm("Confirm that you would like to reset the current highscore.");
+
+    document.getElementById('hsValue').innerText = '0';
+    document.getElementById('hsValueBg').innerText = '0';
+
     reset ? window.localStorage.setItem('highscore', '0') : null;
     return 1;
 }
@@ -40,7 +44,8 @@ export const setLevel = async (level) => {
 }
 
 export const getLevel = () => {
-    return parseInt(window.localStorage.getItem("level"));
+    var level = parseInt(window.localStorage.getItem("level"))
+    return level !== null ? level : 0;
 }
 
 export const speed = (e) => {

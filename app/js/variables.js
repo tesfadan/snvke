@@ -31,7 +31,7 @@ export var game = {
     size: 50,
     foodColor: '#ff1c3a',
     snakeColor: '#12e772',
-    snakeColorAlt: '#12e772',
+    snakeColorAlt: '#1ecc6c',
     secondary: '#ff00d4',
     border: '#ff00d430',
     width: 1400,

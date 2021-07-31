@@ -11,8 +11,6 @@ export function keyMove(dir) {
         Turn(dir);
     }
     else {
-        // console.log("Navigation");
-        // console.log(dir)
         NavMove(dir)
     }
 }

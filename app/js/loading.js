@@ -1,5 +1,5 @@
 import { drawGrid } from "./grid.js";
-import { canvas, game } from "./variables.js";
+import { game } from "./variables.js";
 
 const blockPosition = (x) => {
     return x * 1;

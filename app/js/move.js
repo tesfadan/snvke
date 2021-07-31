@@ -1,30 +1,28 @@
-import { updateTail } from "./drawSnake.js";
-import { position, changePosition, gridNumber, session, game } from "./variables.js";
 import { catchFoul, gameOver } from "./catchFoul.js";
-import { score } from "./score.js";
-import { pauseResume, speed } from "./functions.js";
+import { updateTail } from "./drawSnake.js";
+import { Start } from "./game.js";
 import { enterKey, keyMove, keyPause } from "./keystroke.js";
-import { Start } from "./game.js"
-import { MainMenu } from "./screens.js";
+import { score } from "./score.js";
+import { changePosition, gridNumber, position, session } from "./variables.js";
+
+const moveScore = () => {
+    if (position.d === 'left' || position.d === 'right') {
+        if (session.tails.length >= gridNumber.x) {
+            score(1)
+        }
+    }
+    else {
+        if (session.tails.length >= gridNumber.y) {
+            score(1)
+        }
+    }
+}
 
 export const Move = () => {
     var newPosition;
     updateTail();
 
-    const moveScore = () => {
-        if (position.d === 'left' || position.d === 'right') {
-            if (session.tails.length >= gridNumber.x) {
-                score(1)
-            }
-        }
-        else {
-            if (session.tails.length >= gridNumber.y) {
-                score(1)
-            }
-        }
-    }
-
-    moveScore();
+    // moveScore();
 
     switch (position.d) {
         case "right":
@@ -93,11 +91,11 @@ document.addEventListener('keydown', event => {
 
         case 80:
             // p  
-            keyPause()
+            keyPause();
             break;
 
         case 79:
-            gameOver()
+            gameOver();
             break
 
         case 220:
@@ -105,7 +103,7 @@ document.addEventListener('keydown', event => {
             break
 
         case 73:
-            MainMenu();
+            // MainMenu();
             break;
         case 16:
             // speed('up');
@@ -121,7 +119,7 @@ document.addEventListener('keydown', event => {
 document.addEventListener('keyup', event => {
     switch (event.keyCode) {
         case 16:
-            // speed('down')
+            // speed('down');
             break;
 
         default:

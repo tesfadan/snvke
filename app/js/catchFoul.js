@@ -1,6 +1,5 @@
 import { getHighscore, setHighscore } from "./functions.js";
 import { GameOverScreen } from "./screens.js";
-// import { Intro } from "./intro.js";
 import { game, position, session, updateSession } from "./variables.js";
 
 export const catchFoul = () => {
@@ -9,12 +8,7 @@ export const catchFoul = () => {
         // get_audio_option().then(
         //     res => res ? score_sound.play() : console.log("Audio Off")
         // )
-        // game.snake_color = "#ff0000";
         gameOver();
-
-        // updateSession({ tails: [] })
-        // session = defaults.session;
-        // return document.getElementById("points").innerText = "00";
     }
 }
 

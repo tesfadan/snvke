@@ -1,7 +1,7 @@
 import { getHighscore, resetHighscore, setLevel } from "./functions.js";
 import { Start } from "./game.js";
-import { focused, Navigation, updateFocused } from "./navigation.js";
-import { session, updateSession } from "./variables.js";
+import { Navigation, updateFocused } from "./navigation.js";
+import { updateSession } from "./variables.js";
 
 const options = {
     mainMenu: [
@@ -11,15 +11,15 @@ const options = {
     ],
     gameOver: [
         { label: "Play Again", id: "playAgain", action: () => { Start() } },
-        { label: "Main Menu", id: "mainMenu", action: () => { MainMenu() } }
+        { label: "Main Menu", id: "mainMenu", action: () => { MainMenu(0) } }
     ],
     levels: [
-        { label: "Easy", id: "easyBtn", action: () => { setLevel(0).then(() => MainMenu()) } },
-        { label: "Intermediate", id: "intermediateBtn", action: () => { setLevel(1).then(() => MainMenu()) } },
-        { label: "Extreme", id: "extremeBtn", action: () => { setLevel(2).then(() => MainMenu()) } }
+        { label: "Easy", id: "easyBtn", action: () => { setLevel(0).then(() => MainMenu(1)) } },
+        { label: "Intermediate", id: "intermediateBtn", action: () => { setLevel(1).then(() => MainMenu(1)) } },
+        { label: "Extreme", id: "extremeBtn", action: () => { setLevel(2).then(() => MainMenu(1)) } }
     ],
     highscore: [
-        { label: "Back", id: "Back", action: () => { MainMenu() } },
+        { label: "Back", id: "Back", action: () => { MainMenu(2) } },
         { label: "Reset", id: "resetHS", action: () => resetHighscore() }
     ]
 }
@@ -28,21 +28,22 @@ const ui = document.getElementById("ui");
 
 
 const Credit = () => {
-
     return `
         <div class="credit">
-            <a href="https://twitter.com/tesfadan">tesfadan</a>
+            <a href="https://twitter.com/tesfadan" traget="_blank">tesfadan.com</a>
         </div>
     `
 }
 
-export const MainMenu = () => {
+export const MainMenu = (f) => {
+    // param f is focused 
+    f !== undefined ? updateFocused(f) : null;
+
     updateSession({ options: options.mainMenu });
     ui.innerHTML = `
         <div id="mainMenuScreen" class="screen mainMenuScreen">
         <h1 class="gameTitle heading">snvke</h1>
         ${Navigation(options.mainMenu)}
-        ${Credit()}
     </div>
     `;
 }
@@ -77,11 +78,11 @@ export const HighScore = () => {
         <div id="highscoreScreen" class="screen highscoreScreen">
         <h1 class="highscoreText heading">Highscore</h1>
         <div class="highScoreBox">
-            <span class="highScoreValue">
+            <span class="highScoreValue" id="hsValue">
             ${getHighscore()}
             </span>
 
-            <span class="bgValue highScoreValue">
+            <span class="bgValue highScoreValue" id="hsValueBg">
             ${getHighscore()}
             </span>
         </div>

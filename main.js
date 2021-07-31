@@ -12,7 +12,10 @@ function createWindow() {
             preload: path.join(__dirname, 'preload.js')
         },
         frame: false,
-        transparent: true
+        transparent: true,
+        titleBarStyle: 'hiddenInset',
+        resizable: false,
+        title: 'snvke'
     })
 
     win.loadFile('./app/index.html')

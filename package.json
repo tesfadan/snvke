@@ -4,8 +4,20 @@
     "description": "A new take on the classic snake game.",
     "main": "main.js",
     "module": "commonjs",
+    "private": true,
+    "homepage": "./",
+    "build": {
+        "appId": "com.addismind.snvke",
+        "win": {
+            "iconUrl": "https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-256.png"
+        },
+        "directories": {
+            "buildResources": "public"
+        }
+    },
     "scripts": {
         "start": "electron .",
+        "build": "electron build",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Tesfa Demissie",

@@ -18,7 +18,8 @@
     "scripts": {
         "start": "electron .",
         "build": "electron build",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "buildWeb": "rsync -r app/ web"
     },
     "author": "Tesfa Demissie",
     "license": "ISC",

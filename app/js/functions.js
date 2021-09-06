@@ -26,14 +26,12 @@ export const getHighscore = () => {
     var highscore = window.localStorage.getItem('highscore');
     var intHighscore = parseInt(highscore);
 
-    console.log(intHighscore);
     if (highscore === null || highscore === undefined || intHighscore === NaN) {
         return 0
     }
     else {
         return intHighscore
     }
-    // return highscore !== null ? highscore : 0;
 }
 
 export const resetHighscore = async () => {

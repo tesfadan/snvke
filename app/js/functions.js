@@ -23,13 +23,15 @@ export const setHighscore = ({ score }) => {
 }
 
 export const getHighscore = () => {
-    var highscore = parseInt(window.localStorage.getItem('highscore'));
-    console.log(highscore);
-    if (highscore === null || highscore === undefined || highscore === NaN) {
+    var highscore = window.localStorage.getItem('highscore');
+    var intHighscore = parseInt(highscore);
+
+    console.log(intHighscore);
+    if (highscore === null || highscore === undefined || intHighscore === NaN) {
         return 0
     }
     else {
-        return highscore
+        return intHighscore
     }
     // return highscore !== null ? highscore : 0;
 }

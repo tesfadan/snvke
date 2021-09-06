@@ -51,8 +51,23 @@ export const setLevel = async (level) => {
 }
 
 export const getLevel = () => {
-    var level = parseInt(window.localStorage.getItem("level"))
-    return level !== null ? level : 0;
+    var level = window.localStorage.getItem("level");
+    var intLevel = parseInt(level);
+
+    switch (intLevel) {
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+
+        default:
+            intLevel = 0;
+            break;
+    }
+
+    return intLevel
 }
 
 export const speed = (e) => {

@@ -24,7 +24,14 @@ export const setHighscore = ({ score }) => {
 
 export const getHighscore = () => {
     var highscore = parseInt(window.localStorage.getItem('highscore'));
-    return highscore !== null ? highscore : 0;
+    console.log(highscore);
+    if (highscore === null || highscore === undefined || highscore === NaN) {
+        return 0
+    }
+    else {
+        return highscore
+    }
+    // return highscore !== null ? highscore : 0;
 }
 
 export const resetHighscore = async () => {
